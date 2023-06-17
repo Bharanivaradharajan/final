@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reference Page</title>
+  <style>
+    /* CSS styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #555;
+    }
+
+    .reference-section {
+      margin-top: 40px;
+    }
+
+    .reference-section h2 {
+      color: #555;
+    }
+
+    .reference-section p {
+      color: #777;
+    }
+
+    .slide-container {
+      margin-top: 40px;
+      position: relative;
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .slide-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .slide-indicators {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .slide-indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: #777;
+      margin: 0 6px;
+      cursor: pointer;
+    }
+
+    .slide-indicator.active {
+      background-color: #555;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 10px;
+      }
+      .slide-container {
+        height: 200px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 5px;
+      }
+      .slide-container {
+        height: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Reference Page</h1>
+
+    <div class="reference-section">
+      <h2>Orthopaedic Treatments</h2>
+      <p>Our orthopaedic clinic offers a wide range of treatments for various musculoskeletal conditions, including:</p>
+      <ul>
+        <li>Fracture management</li>
+        <li>Joint replacement surgeries</li>
+        <li>Arthroscopic procedures</li>
+        <li>Spine surgeries</li>
+        <li>Sports medicine</li>
+        <li>Physical therapy</li>
+      </ul>
+    </div>
+
+    <div class="reference-section">
+      <h2>Experienced Orthopaedic Surgeons</h2>
+      <p>Our team of highly skilled and experienced orthopaedic surgeons is dedicated to providing exceptional care and personalized treatment options to our patients. They specialize in various areas, including:</p>
+      <ul>
+        <li>Joint replacement</li>
+        <li>Sports injuries</li>
+        <li>Spinal disorders</li>
+        <li>Hand and upper extremity</li>
+        <li>Pediatric orthopaedics</li>
+      </ul>
+    </div>
+
+    <div class="slide-container">
+      <div class="slide active">
+        <img class="slide-image" src="https://wallpaperaccess.com/full/2820062.jpg" alt="Slide 1">
+      </div>
+      <div class="slide">
+        <img class="slide-image" src="https://images.ctfassets.net/uq0sg0aynn6a/6EJMPEc58hpriFmlvC4Nwj/07106736a4e6ed65720081246a6d6d1e/Orthopaedic_Surgeons.jpg" alt="Slide 2">
+      </div>
+      <div class="slide">
+        <img class="slide-image" src="https://wp02-media.cdn.ihealthspot.com/wp-content/uploads/sites/309/2018/11/20165733/iStock-1001618686.jpg" alt="Slide 3">
+      </div>
+
+      <div class="slide-indicators">
+        <div class="slide-indicator active"></div>
+        <div class="slide-indicator"></div>
+        <div class="slide-indicator"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // JavaScript for slide functionality
+    const slides = document.querySelectorAll('.slide');
+    const indicators = document.querySelectorAll('.slide-indicator');
+
+    let currentIndex = 0;
+
+    function showSlide(index) {
+      slides.forEach(slide => slide.classList.remove('active'));
+      indicators.forEach(indicator => indicator.classList.remove('active'));
+
+      slides[index].classList.add('active');
+      indicators[index].classList.add('active');
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % slides.length;
+      showSlide(currentIndex);
+    }
+
+    function previousSlide() {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      showSlide(currentIndex);
+    }
+
+    indicators.forEach((indicator, index) => {
+      indicator.addEventListener('click', () => {
+        showSlide(index);
+      });
+    });
+
+    setInterval(nextSlide, 5000); // Change slide every 5 seconds
+  </script>
+</body>
+</html>
